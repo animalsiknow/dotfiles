@@ -5,6 +5,7 @@
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '("~/.spacemacs-layers")
    dotspacemacs-configuration-layers `(auto-completion
+                                       agda
                                        c-c++
                                        clojure
                                        colors
@@ -21,6 +22,7 @@
                                        markdown
                                        perl
                                        purescript
+                                       racket
                                        react
                                        (ruby :variables
                                              ruby-version-manager 'chruby
@@ -29,7 +31,6 @@
                                        shell
                                        (syntax-checking :variables
                                                         syntax-checking-enable-tooltips nil)
-                                       vagrant
                                        version-control
                                        yaml)
    dotspacemacs-additional-packages '()
@@ -143,14 +144,6 @@
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   (add-hook
-   'prog-mode-hook
-   '(lambda ()
-      (setq prettify-symbols-unprettify-at-point t
-            prettify-symbols-alist
-            (append prettify-symbols-alist sgnr/pragmatapro-font-lock-symbols-alist))
-      (prettify-symbols-mode 1)))
-
-  (add-hook
    'term-mode-hook
    '(lambda ()
       (define-key term-raw-map (kbd "M-<backspace>") 'sgnr/term-send-meta-backspace)
@@ -241,26 +234,17 @@
    'css-mode-hook
    '(lambda ()
       (setq css-indent-offset 2))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(exec-path-from-shell-arguments (quote ("-l")))
- '(flycheck-clang-definitions
-   (quote
-    ("MRB_ENABLE_DEBUG_HOOK" "MRB_INT64" "MRB_UTF8_STRING" "MRB_WORD_BOXING" "YYDEBUG")))
- '(flycheck-clang-include-path
-   (list "/opt/rubies/2.3.0/include/ruby-2.3.0/x86_64-darwin15" "/opt/rubies/2.3.0/include/ruby-2.3.0"
-         (expand-file-name "~/src/github.com/Shopify/mruby_engine/ext/mruby_engine/mruby/include")))
  '(package-selected-packages
    (quote
-    (perl6-mode goto-chg seq vagrant-tramp vagrant go-guru go-eldoc company-go go-mode pug-mode ob-elixir org minitest hide-comnt skewer-mode simple-httpd dumb-jump cargo powerline purescript-mode pcre2el json-snatcher json-reformat prop-menu parent-mode haml-mode gitignore-mode fringe-helper git-gutter+ flx web-completion-data dash-functional pos-tip ghc inflections edn multiple-cursors paredit peg eval-sexp-fu highlight spinner clojure-mode inf-ruby yasnippet packed pkg-info epl popup bind-map iedit undo-tree s git-gutter js2-mode markdown-mode package-build smooth-scrolling shm ruby-end page-break-lines leuven-theme company-racer deferred buffer-move bracketed-paste hydra auto-complete request projectile git-commit company evil flycheck-mix alchemist elixir-mode use-package spacemacs-theme racer org-plus-contrib intero git-messenger git-link flycheck-rust exec-path-from-shell evil-unimpaired evil-exchange bundler cider tern anzu smartparens flycheck haskell-mode helm helm-core avy magit magit-popup with-editor f dash yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen toml-mode toc-org tagedit spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm rust-mode ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters queue quelpa psci psc-ide popwin persp-mode paradox orgit org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc jade-mode info+ indent-guide idris-mode ido-vertical-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-gutter-fringe git-gutter-fringe+ gh-md flycheck-pos-tip flycheck-haskell flycheck-elm flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help enh-ruby-mode emmet-mode elm-mode elisp-slime-nav disaster diminish diff-hl define-word company-web company-tern company-statistics company-quickhelp company-ghci company-ghc company-cabal company-c-headers column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby bind-key auto-yasnippet auto-highlight-symbol auto-compile async aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (racket-mode faceup yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package toml-mode toc-org tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa pug-mode psci psc-ide popwin persp-mode perl6-mode paradox orgit org-plus-contrib org-bullets open-junk-file ob-elixir neotree multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc intero info+ indent-guide idris-mode ido-vertical-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio go-guru go-eldoc gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md flycheck-rust flycheck-pos-tip flycheck-mix flycheck-haskell flycheck-elm flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help enh-ruby-mode emmet-mode elm-mode elisp-slime-nav dumb-jump disaster diff-hl define-word company-web company-tern company-statistics company-go company-ghci company-ghc company-cabal company-c-headers column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chruby cargo bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ )
