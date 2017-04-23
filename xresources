@@ -1,6 +1,13 @@
 URxvt.font: xft:PragmataPro:size=14
 URxvt*scrollBar: false
 
+Emacs.FontBackend: xft
+Xft.hinting: true
+Xft.hintstyle: hintmedium
+Xft.antialias: rgba
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
 #define S_base03 #002b36
 #define S_base02 #073642
 #define S_base01 #586e75
