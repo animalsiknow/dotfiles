@@ -6,7 +6,7 @@ my @files = <
     gitconfig gitignore
     irssi
     tmux.conf
-    xinitrc xmodmap xresources
+    XCompose xinitrc xmodmap xresources
     zshrc zpath zprofile zshenv
 >;
 
