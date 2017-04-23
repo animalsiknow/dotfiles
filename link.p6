@@ -4,6 +4,7 @@ my @files = <
     config
     emacs.d spacemacs spacemacs-layers
     gitconfig gitignore
+    irssi
     tmux.conf
     xinitrc xmodmap xresources
     zshrc zpath zprofile zshenv

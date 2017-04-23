@@ -1,0 +1,24 @@
+servers = (
+  {
+    address = "irc.mozilla.org";
+    chatnet = "Mozilla";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = { Mozilla = { type = "IRC"; nick = "ilovemonoids"; }; };
+
+ignores = (
+  {
+    level = "JOINS PARTS QUITS";
+    network = "Mozilla";
+  }
+);
+
+settings = {
+  core = { real_name = "ilovemonoids"; user_name = "ilovemonoids"; nick = "ilovemonoids"; };
+  "fe-text" = { actlist_sort = "refnum"; };
+};
