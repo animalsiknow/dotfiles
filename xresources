@@ -1,4 +1,4 @@
-URxvt.font: xft:PragmataPro:size=14
+URxvt.font: xft:PragmataPro:size=12
 URxvt*scrollBar: false
 
 Emacs.FontBackend: xft
