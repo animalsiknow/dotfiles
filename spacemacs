@@ -41,7 +41,7 @@
    dotspacemacs-startup-lists '((recents . 5) (projects . 7))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(spacemacs-dark spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("PragmataPro"
                                :size 16
