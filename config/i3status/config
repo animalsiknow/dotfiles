@@ -7,13 +7,7 @@ general {
   color_bad = "#dc322f"
 }
 
-order += "wireless wlp11s0"
 order += "tztime local"
-
-wireless wlp11s0 {
-  format_up = "☁ %essid"
-  format_down = "☁ No wifi"
-}
 
 tztime local {
   format = "⌚ %Y-%m-%d %H:%M"
