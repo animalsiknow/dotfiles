@@ -1,25 +1,6 @@
-# i3 config file (v4)
-
 set $mod Mod4
 
 font pango:PragmataPro 14
-
-set $base03 #002b36
-set $base02 #073642
-set $base01 #586e75
-set $base00 #657b83
-set $base0 #839496
-set $base1 #93a1a1
-set $base2 #eee8d5
-set $base3 #fdf6e3
-set $yellow #b58900
-set $orange #cb4b16
-set $red #dc322f
-set $magenta #d33682
-set $violet #6c71c4
-set $blue #268bd2
-set $cyan #2aa198
-set $green #859900
 
 new_window none
 
@@ -29,7 +10,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -fn PragmataPro-14 -nb \\"#002b36\\" -sb \\"#002b36\\" -nf \\"#839496\\" -sf \\"#d33682\\"'"
+bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -fn PragmataPro-14 -nb \\"#292b2e\\" -sb \\"#292b2e\\" -nf \\"#b2b2b2\\" -sf \\"#c56ec3\\"'"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -100,19 +81,38 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $background #292b2e
+set $foreground #b2b2b2
+set $darkblack #0a0814
+set $black #100a14
+set $darkred #f2241f
+set $red #f2241f
+set $darkgreen #2d9574
+set $green #86dc2f
+set $darkyellow #b1951d
+set $yellow #dc752f
+set $darkblue #5d4d7a
+set $blue #4f97d7
+set $darkmagenta #a31db1
+set $magenta #c56ec3
+set $darkcyan #2aa1ae
+set $cyan #28def0
+set $darkwhite #545557
+set $white #cbc1d5
+
 bar {
   status_command i3status
   position top
   separator_symbol "  "
 
   colors {
-    background $base03
-    statusline $base0
-    separator $base02
+    background $background
+    statusline $foreground
+    separator $darkwhite
 
-    focused_workspace $base03 $base03 $magenta
-    active_workspace $base03 $base03 $green
-    inactive_workspace $base03 $base03 $base0
-    urgent_workspace $base03 $base03 $red
+    focused_workspace $background $background $magenta
+    active_workspace $background $background $green
+    inactive_workspace $background $background $darkwhite
+    urgent_workspace $background $background $red
   }
 }
