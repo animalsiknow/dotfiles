@@ -20,5 +20,5 @@ for @files -> $file {
 
     my $source = $*SPEC.catdir($*CWD, $file).IO;
     qq{Linking "$target" -> "$source".}.say;
-    $target.symlink: $source;
+    $source.symlink: $target;
 }
