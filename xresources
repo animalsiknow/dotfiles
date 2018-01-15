@@ -1,6 +1,3 @@
-URxvt.font: xft:PragmataPro:size=12
-URxvt*scrollBar: false
-
 Emacs.FontBackend: xft
 Xft.hinting: true
 Xft.hintstyle: hintmedium
@@ -8,36 +5,75 @@ Xft.antialias: rgba
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-*background: #292b2e
-xterm*background: #292b2e
-URxvt*background: #292b2e
+URxvt.scrollBar: false
+URxvt.font: xft:PragmataPro:size=12
 
-*foreground:        #b2b2b2
+#ifdef DARK
 
-*cursorColor:       #a45bad
-*colorUL:           #e3dedd
-*underlineColor:    #e3dedd
-!black
-*color0:  	#0a0814
-*color8:  	#100a14
-!red
-*color1:  	#ce537a
-*color9:  	#f2241f
-!green
-*color2:  	#2d9574
-*color10: 	#86dc2f
-!yellow
-*color3:  	#b1951d
-*color11: 	#dc752f
-!blue
-*color4:  	#5d4d7a
-*color12: 	#4f97d7
-!purple
-*color5:    #a31db1
-*color13: 	#c56ec3
-!cyan
-*color6:  	#2aa1ae
-*color14: 	#28def0
-!white
-*color7:    #545557
-*color15:   #cbc1d5
+#define BACKGROUND #292b2e
+#define FOREGROUND #b2b2b2
+#define CURSOR_COLOR #a45bad
+#define UNDERLINE_COLOR #e3dedd
+#define DARK_BLACK #0a0814
+#define BRIGHT_BLACK #100a14
+#define DARK_RED #ce537a
+#define BRIGHT_RED #f2241f
+#define DARK_GREEN #2d9574
+#define BRIGHT_GREEN #86dc2f
+#define DARK_YELLOW #b1951d
+#define BRIGHT_YELLOW #dc752f
+#define DARK_BLUE #5d4d7a
+#define BRIGHT_BLUE #4f97d7
+#define DARK_PURPLE #a31db1
+#define BRIGHT_PURPLE #c56ec3
+#define DARK_CYAN #2aa1ae
+#define BRIGHT_CYAN #28def0
+#define DARK_WHITE #545557
+#define BRIGHT_WHITE #cbc1d5
+
+#else
+
+#define BACKGROUND #fbf8ef
+#define FOREGROUND #655370
+#define CURSOR_COLOR #da8b55
+#define UNDERLINE_COLOR #ba2f59
+#define DARK_BLACK #100a14
+#define BRIGHT_BLACK #100a14
+#define DARK_RED #f2241f
+#define BRIGHT_RED #faede4
+#define DARK_GREEN #67b11d
+#define BRIGHT_GREEN #edf2e9
+#define DARK_YELLOW #b1951d
+#define BRIGHT_YELLOW #f6f1e1
+#define DARK_BLUE #3a81c3
+#define BRIGHT_BLUE #edf1ed
+#define DARK_PURPLE #a31db1
+#define BRIGHT_PURPLE #a31db1
+#define DARK_CYAN #21b8c7
+#define BRIGHT_CYAN #edf2e9
+#define DARK_WHITE #e3dedd
+#define BRIGHT_WHITE #fbf8ef
+
+#endif
+
+URxvt.background: BACKGROUND
+URxvt.foreground: FOREGROUND
+URxvt.cursorColor: CURSOR_COLOR
+URxvt.colorUL: UNDERLINE_COLOR
+URxvt.underlineColor: UNDERLINE_COLOR
+URxvt.color0: DARK_BLACK
+URxvt.color8: BRIGHT_BLACK
+URxvt.color1: DARK_RED
+URxvt.color9: BRIGHT_RED
+URxvt.color2: DARK_GREEN
+URxvt.color10: BRIGHT_GREEN
+URxvt.color3: DARK_YELLOW
+URxvt.color11: BRIGHT_YELLOW
+URxvt.color4: DARK_BLUE
+URxvt.color12: BRIGHT_BLUE
+URxvt.color5: DARK_PURPLE
+URxvt.color13: BRIGHT_PURPLE
+URxvt.color6: DARK_CYAN
+URxvt.color14: BRIGHT_CYAN
+URxvt.color7: DARK_WHITE
+URxvt.color15: BRIGHT_WHITE

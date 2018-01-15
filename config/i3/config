@@ -81,24 +81,43 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $background #292b2e
-set $foreground #b2b2b2
-set $darkblack #0a0814
+# set $background #292b2e
+# set $foreground #b2b2b2
+# set $darkblack #0a0814
+# set $black #100a14
+# set $darkred #f2241f
+# set $red #f2241f
+# set $darkgreen #2d9574
+# set $green #86dc2f
+# set $darkyellow #b1951d
+# set $yellow #dc752f
+# set $darkblue #5d4d7a
+# set $blue #4f97d7
+# set $darkmagenta #a31db1
+# set $magenta #c56ec3
+# set $darkcyan #2aa1ae
+# set $cyan #28def0
+# set $darkwhite #545557
+# set $white #cbc1d5
+
+set $background #fbf8ef
+set $foreground #655370
+set $darkblack #100a14
 set $black #100a14
-set $darkred #f2241f
+set $darkred #eed9d2
 set $red #f2241f
-set $darkgreen #2d9574
-set $green #86dc2f
+set $darkgreen #67b11d
+set $green #edf2e9
 set $darkyellow #b1951d
-set $yellow #dc752f
-set $darkblue #5d4d7a
-set $blue #4f97d7
+set $yellow #f6f1e1
+set $darkblue #3a81c3
+set $blue #edf1ed
 set $darkmagenta #a31db1
-set $magenta #c56ec3
-set $darkcyan #2aa1ae
-set $cyan #28def0
-set $darkwhite #545557
-set $white #cbc1d5
+set $magenta #a31db1
+set $darkcyan #2d9574
+set $cyan #edf2e9
+set $darkwhite #e3dedd
+set $white #fbf8ef
 
 bar {
   status_command i3status
