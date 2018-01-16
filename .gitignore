@@ -1,5 +1,6 @@
 lein/*
 !lein/profiles.clj
 config/*
+!config/alacritty
 !config/i3
 !config/i3status

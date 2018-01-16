@@ -42,17 +42,17 @@ URxvt.font: xft:PragmataPro:size=12
 #define DARK_RED #f2241f
 #define BRIGHT_RED #faede4
 #define DARK_GREEN #67b11d
-#define BRIGHT_GREEN #edf2e9
+#define BRIGHT_GREEN #67b11d
 #define DARK_YELLOW #b1951d
-#define BRIGHT_YELLOW #f6f1e1
+#define BRIGHT_YELLOW #b1951d
 #define DARK_BLUE #3a81c3
-#define BRIGHT_BLUE #edf1ed
+#define BRIGHT_BLUE #3a81c3
 #define DARK_PURPLE #a31db1
 #define BRIGHT_PURPLE #a31db1
 #define DARK_CYAN #21b8c7
-#define BRIGHT_CYAN #edf2e9
-#define DARK_WHITE #e3dedd
-#define BRIGHT_WHITE #fbf8ef
+#define BRIGHT_CYAN #21b8c7
+#define DARK_WHITE #655370
+#define BRIGHT_WHITE #655370
 
 #endif
 

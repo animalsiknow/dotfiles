@@ -10,7 +10,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -fn PragmataPro-14 -nb \\"#292b2e\\" -sb \\"#292b2e\\" -nf \\"#b2b2b2\\" -sf \\"#c56ec3\\"'"
+bindsym $mod+d exec --no-startup-id "i3-dmenu-desktop --dmenu='dmenu -i -fn PragmataPro-14 -nb \\"#fbf8ef\\" -sb \\"#fbf8ef\\" -nf \\"#655370\\" -sf \\"#a31db1\\"'"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
