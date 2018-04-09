@@ -12,6 +12,7 @@
                       auto-completion-tab-key-behavior nil
                       auto-completion-complete-with-key-sequence "jk")
      better-defaults
+     docker
      elixir
      elm
      emacs-lisp
@@ -27,7 +28,8 @@
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      syntax-checking
-     version-control)
+     version-control
+     yaml)
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(orgit)
@@ -48,7 +50,7 @@
    dotspacemacs-themes '(spacemacs-light spacemacs-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("PragmataPro"
-                               :size 16
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -125,15 +127,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#d2ceda" "#f2241f" "#67b11d" "#b1951d" "#3a81c3" "#a31db1" "#21b8c7" "#655370"])
- '(custom-safe-themes
-   (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
-    (which-key use-package string-inflection racer pug-mode persp-mode ob-elixir org-plus-contrib idris-mode highlight-indentation helm-flx flycheck-perl6 flycheck-mix flycheck-credo fill-column-indicator eyebrowse expand-region evil-surround evil-nerd-commenter evil-magit editorconfig dumb-jump define-word cargo rust-mode bind-key auto-compile alchemist elixir-mode ace-window ace-link f evil goto-chg flycheck flyspell-correct yasnippet company projectile helm helm-core avy magit magit-popup git-commit ghub let-alist with-editor async xterm-color ws-butler winum web-mode volatile-highlights vi-tilde-fringe uuidgen unfill undo-tree toml-mode toc-org tagedit symon spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters prop-menu popwin perl6-mode pcre2el password-generator paradox packed org-bullets open-junk-file neotree mwim multi-term move-text magit-gitflow macrostep lorem-ipsum linum-relative link-hint less-css-mode info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ fuzzy flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-elm flx-ido fancy-battery exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode elisp-slime-nav diminish diff-hl company-web company-statistics column-enforce-mode clean-aindent-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary aggressive-indent adaptive-wrap ace-jump-helm-line ac-ispell))))
+    (yaml-mode xterm-color web-mode scss-mode perl6-mode paradox mwim linum-relative link-hint impatient-mode htmlize simple-httpd idris-mode hl-todo helm-swoop helm-projectile helm-make helm-company gitconfig-mode gitattributes-mode git-timemachine flycheck-rust flx-ido evil-nerd-commenter evil-matchit evil-magit editorconfig dumb-jump docker diff-hl define-word company-web browse-at-remote auto-compile packed alchemist adaptive-wrap ace-window ace-link avy company projectile iedit smartparens highlight flycheck gitignore-mode helm helm-core magit magit-popup git-commit ghub with-editor epl rust-mode spaceline powerline s dash yasnippet which-key use-package hydra exec-path-from-shell async evil org-plus-contrib yasnippet-snippets ws-butler winum web-completion-data volatile-highlights vi-tilde-fringe uuidgen unfill undo-tree toml-mode toc-org tagedit tablist symon string-inflection spinner spaceline-all-the-icons smeargle slim-mode shell-pop sass-mode restart-emacs rainbow-delimiters racer pug-mode prop-menu popwin persp-mode pcre2el password-generator overseer org-bullets open-junk-file ob-elixir neotree nameless multi-term move-text magit-gitflow macrostep lorem-ipsum less-css-mode json-mode indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-purpose helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-css-scss helm-c-yasnippet helm-ag goto-chg google-translate golden-ratio git-messenger git-link git-gutter-fringe git-gutter-fringe+ fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-perl6 flycheck-mix flycheck-elm flycheck-credo fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode elisp-slime-nav dockerfile-mode docker-tramp diminish counsel-projectile company-statistics column-enforce-mode clean-aindent-mode centered-cursor-mode cargo bind-key auto-yasnippet auto-highlight-symbol auto-dictionary aggressive-indent ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
