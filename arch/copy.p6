@@ -7,6 +7,7 @@ my %files = <
   boot/loader/entries/arch.conf /boot/loader/entries/arch.conf
   etc/libvirt/qemu.conf /etc/libvirt/qemu.conf
   etc/mkinitcpio.conf /etc/mkinitcpio.conf
+  etc/pacman.conf /etc/pacman.conf
 >;
 
 for %files.kv -> $source, $target {
