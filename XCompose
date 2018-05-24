@@ -11,5 +11,5 @@
 <Multi_key> <A> <A> : "À"
 <Multi_key> <o> <o> : "ô"
 <Multi_key> <O> <O> : "Ô"
-<Multi_key> <dot> <dot> : "…"
-<Multi_key> <;> <l> : "λ"
+<Multi_key> <period> <period> : "…"
+<Multi_key> <semicolon> <l> : "λ"
