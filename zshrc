@@ -12,9 +12,14 @@ SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 autoload -Uz compinit && compinit
+export CLICOLOR=1
 
-source /usr/share/chruby/chruby.sh
+if [[ -f /usr/share/chruby/chruby.sh ]]; then
+  source /usr/share/chruby/chruby.sh
+fi
 
 export RUST_BACKTRACE=1
 
-alias ls='ls --color=always'
+if [ "$(uname -s)" = "Linux" ]; then
+  alias ls='ls --color=always'
+fi
