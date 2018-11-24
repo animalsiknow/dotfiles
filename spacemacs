@@ -53,11 +53,10 @@
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(gruvbox spacemacs-dark spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("PragmataPro Liga"
-                               :size 20
+   dotspacemacs-default-font `("PragmataPro Liga"
+                               :size ,(if (eq system-type 'darwin) 16 20)
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+                               :width normal)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
