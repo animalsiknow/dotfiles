@@ -17,6 +17,12 @@ export CLICOLOR=1
 if [[ -f /usr/share/chruby/chruby.sh ]]; then
   source /usr/share/chruby/chruby.sh
 fi
+if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+fi
+if [[ -f /usr/share/fzf/completion.zsh ]]; then
+  source /usr/share/fzf/completion.zsh
+fi
 
 export RUST_BACKTRACE=1
 
