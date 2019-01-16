@@ -19,6 +19,9 @@ export PROMPT="%F{magenta}%n%F{default} on %F{yellow}$(uname | awk '{ print tolo
 if [[ -f /usr/share/chruby/chruby.sh ]]; then
   source /usr/share/chruby/chruby.sh
 fi
+if [[ -f /usr/share/chruby/auto.sh ]]; then
+  source /usr/share/chruby/auto.sh
+fi
 if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
   source /usr/share/fzf/key-bindings.zsh
 fi
