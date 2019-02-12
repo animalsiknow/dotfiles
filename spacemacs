@@ -346,6 +346,9 @@
   (dolist (alias pragmatapro-prettify-symbols-alist)
     (push alias prettify-symbols-alist)))
 
+(defun dotspacemacs/configure-c-mode ()
+  (c-set-offset 'brace-intro-list '+))
+
 (defun dotspacemacs/user-init ())
 
 (defun dotspacemacs/user-config ()
@@ -360,6 +363,7 @@
   (add-hook 'prog-mode-hook #'dotspacemacs/add-pragmatapro-prettify-symbols-alist)
   (dotspacemacs/configure-rust-mode)
   (dotspacemacs/configure-erlang-mode)
+  (dotspacemacs/configure-c-mode)
   (add-hook 'elm-mode-hook #'dotspacemacs/elm-mode-hook)
   (global-prettify-symbols-mode t))
 
