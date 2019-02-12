@@ -16,6 +16,7 @@
      elixir
      elm
      emacs-lisp
+     erlang
      git
      helm
      html
@@ -106,6 +107,9 @@
   (lexical-let ((old-do-auto-fill #'rust-do-auto-fill))
     (defun rust-do-auto-fill ()
       (when (nth 4 (syntax-ppss)) (funcall old-do-auto-fill)))))
+
+(defun dotspacemacs/configure-erlang-mode ()
+  (setq erlang-indent-level 2))
 
 (defun dotspacemacs/elm-mode-hook ()
   (define-key elm-mode-map (kbd "TAB") 'elm-indent-cycle))
@@ -355,6 +359,7 @@
 
   (add-hook 'prog-mode-hook #'dotspacemacs/add-pragmatapro-prettify-symbols-alist)
   (dotspacemacs/configure-rust-mode)
+  (dotspacemacs/configure-erlang-mode)
   (add-hook 'elm-mode-hook #'dotspacemacs/elm-mode-hook)
   (global-prettify-symbols-mode t))
 
@@ -370,7 +375,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yasnippet-snippets toc-org persp-mode org-mime org-download impatient-mode idris-mode htmlize hl-todo highlight-numbers gruvbox-theme autothemer google-translate flyspell-correct-helm flyspell-correct flycheck-elm evil-surround evil-mc evil-matchit elm-test-runner elm-mode editorconfig dumb-jump doom-modeline docker counsel-projectile counsel swiper ivy aggressive-indent ace-window highlight iedit smartparens flycheck yasnippet company window-purpose helm avy alert projectile magit magit-popup git-commit ghub with-editor rust-mode org-plus-contrib hydra yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treepy toml-mode tagedit tablist symon string-inflection spaceline-all-the-icons smeargle slim-mode simple-httpd shrink-path shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pug-mode prop-menu prettier-js popwin ponylang-mode perl6-mode password-generator parent-mode paradox overseer orgit org-projectile org-present org-pomodoro org-bullets org-brain open-junk-file ob-elixir neotree nameless mwim multi-term move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum log4e link-hint json-mode indent-guide imenu-list hungry-delete highlight-parentheses highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql golden-ratio gnuplot gntp gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-rust flycheck-pos-tip flycheck-pony flycheck-perl6 flycheck-mix flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-org evil-numbers evil-nerd-commenter evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval dotenv-mode dockerfile-mode docker-tramp diminish diff-hl define-word company-web company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode cargo bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist ace-link ace-jump-helm-line ac-ispell))))
+    (erlang yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pug-mode prettier-js popwin ponylang-mode persp-mode perl6-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir neotree nameless mwim multi-term move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum link-hint indent-guide impatient-mode idris-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-pony flycheck-perl6 flycheck-mix flycheck-elm flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elm-test-runner elm-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker diminish diff-hl define-word counsel-projectile company-web company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode cargo bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
