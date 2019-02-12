@@ -28,7 +28,7 @@ fi
 
 fzf-cd-project() {
   local root="${HOME}/Source"
-  local cmd="fd --print0 --color never --hidden --case-sensitive --type directory \\\\A\\\\.git\\\\z ${root} 2> /dev/null | xargs --null -L1 dirname"
+  local cmd="fd --print0 --color never --hidden --case-sensitive --type directory \\\\A\\\\.git\\\\z ${root} 2> /dev/null | xargs -0 -L1 dirname"
   setopt localoptions pipefail 2> /dev/null
   local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" fzf +m)"
   if [[ -z "$dir" ]]; then
