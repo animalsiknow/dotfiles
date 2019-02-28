@@ -1,0 +1,8 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "\"PragmataPro Liga\", monospace",
+    "editor.tabSize": 2,
+    "files.insertFinalNewline": true
+}
