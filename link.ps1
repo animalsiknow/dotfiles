@@ -24,3 +24,5 @@ Update-Link -SourcePath "emacs.d" -TargetPath $(Join-Path $ApplicationData ".ema
 Update-Link -SourcePath "spacemacs" -TargetPath $(Join-Path $ApplicationData ".spacemacs")
 Update-Link -SourcePath "spacemacs-layers" -TargetPath $(Join-Path $ApplicationData ".spacemacs-layers")
 Update-Link -SourcePath "code.json" -TargetPath $(Join-Path $ApplicationData "Code" "User" "settings.json")
+Update-Link -SourcePath "gitconfig" -TargetPath $(Join-Path $HOME ".gitconfig")
+Update-Link -SourcePath "gitignore" -TargetPath $(Join-Path $HOME ".gitignore")
