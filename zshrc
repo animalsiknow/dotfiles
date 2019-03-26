@@ -40,7 +40,7 @@ fzf-cd-project() {
   fi
   cd "$dir"
   local ret=$?
-  zle fzf-redraw-prompt
+  zle reset-prompt
   return $ret
 }
 zle -N fzf-cd-project
