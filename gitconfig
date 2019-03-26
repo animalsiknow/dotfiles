@@ -7,3 +7,5 @@
 [user]
   name = Simon Génier
   email = 1782845+animalsiknow@users.noreply.github.com
+[fetch]
+	prune = true
