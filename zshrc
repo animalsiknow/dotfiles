@@ -6,7 +6,7 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=1200
 SAVEHIST=1000
 setopt APPEND_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
 setopt EXTENDED_HISTORY
 
 autoload -Uz compinit && compinit
