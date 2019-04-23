@@ -7,7 +7,7 @@ my @files = <
     irssi
     tmux.conf
     XCompose xinitrc xmodmap xresources
-    zshrc zpath zprofile zshenv
+    zshrc zpath zprofile zshenv zfunc
 >;
 
 for @files -> $file {

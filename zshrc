@@ -9,6 +9,7 @@ setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt EXTENDED_HISTORY
 
+fpath+="$HOME/.zfunc"
 autoload -Uz compinit && compinit
 
 export CLICOLOR=1
