@@ -1,11 +1,17 @@
 [core]
-  editor = emacs
-  excludesfile = ~/.gitignore
-  pager = less -F -X
+editor = emacs
+excludesfile = ~/.gitignore
+pager = less
+
 [color]
-  ui = true
+ui = true
+
 [user]
-  name = Simon Génier
-  email = 1782845+animalsiknow@users.noreply.github.com
+name = Simon Génier
+email = 1782845+animalsiknow@users.noreply.github.com
+
 [fetch]
-	prune = true
+prune = true
+
+[credential]
+helper = osxkeychain

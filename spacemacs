@@ -12,29 +12,28 @@
                       auto-completion-tab-key-behavior nil
                       auto-completion-complete-with-key-sequence "jk")
      better-defaults
-     docker
-     elixir
-     elm
      emacs-lisp
-     erlang
      git
      helm
      html
-     idris
      markdown
+     ocaml
      org
      perl6
+     pollen
      pony
-     ruby
+     racket
      rust
+     shell-scripts
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      syntax-checking
+     typer
      version-control
-     yaml)
+     windows-scripts)
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
@@ -349,21 +348,42 @@
 (defun dotspacemacs/configure-c-mode ()
   (c-set-offset 'brace-intro-list '+))
 
-(defun dotspacemacs/user-init ())
+(defun dotspacemacs/configure-tuareg-mode ()
+  (setq tuareg-prettify-symbols-basic-alist
+        '(("'a" . ?α)
+          ("'b" . ?β)
+          ("'c" . ?γ)
+          ("'d" . ?δ)
+          ("'e" . ?ε)
+          ("'f" . ?φ)
+          ("'i" . ?ι)
+          ("'k" . ?κ)
+          ("'m" . ?μ)
+          ("'n" . ?ν)
+          ("'o" . ?ω)
+          ("'p" . ?π)
+          ("'r" . ?ρ)
+          ("'s" . ?σ)
+          ("'t" . ?τ)
+          ("'x" . ?ξ)
+          ("fun" . ?λ)
+          ("&&" . ?∧)
+          ("||" . ?∨)
+          ("not" . ?¬))))
 
 (defun dotspacemacs/user-config ()
   (setq powerline-default-separator nil
         flycheck-check-syntax-automatically '(save mode-enabled)
-        prettify-symbols-unprettify-at-point 'right-edge)
+        prettify-symbols-unprettify-at-point 'right-edge
+        evil-shift-width 4)
 
-  (setq-default evil-shift-width 4
-                rust-indent-offset 4)
   (spaceline-compile)
 
   (add-hook 'prog-mode-hook #'dotspacemacs/add-pragmatapro-prettify-symbols-alist)
   (dotspacemacs/configure-rust-mode)
   (dotspacemacs/configure-erlang-mode)
   (dotspacemacs/configure-c-mode)
+  (dotspacemacs/configure-tuareg-mode)
   (add-hook 'elm-mode-hook #'dotspacemacs/elm-mode-hook)
   (global-prettify-symbols-mode t))
 
@@ -379,7 +399,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ponylang-mode flycheck-pony yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pug-mode prettier-js popwin persp-mode perl6-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir nameless mwim multi-term move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum link-hint indent-guide impatient-mode idris-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-perl6 flycheck-mix flycheck-elm flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erlang emmet-mode elm-test-runner elm-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker diminish diff-hl define-word counsel-projectile company-web company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode cargo bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+    (jinja2-mode company-ansible ansible-doc ansible ponylang-mode flycheck-pony yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters racer pug-mode prettier-js popwin persp-mode perl6-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir nameless mwim multi-term move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum link-hint indent-guide impatient-mode idris-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-perl6 flycheck-mix flycheck-elm flycheck-credo flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erlang emmet-mode elm-test-runner elm-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker diminish diff-hl define-word counsel-projectile company-web company-statistics column-enforce-mode clean-aindent-mode chruby centered-cursor-mode cargo bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile alchemist aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
