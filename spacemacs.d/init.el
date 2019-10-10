@@ -5,7 +5,7 @@
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-enable-lazy-installation 'unused
    dotspacemacs-ask-for-lazy-installation t
-   dotspacemacs-configuration-layer-path '("~/.spacemacs-layers")
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers")
    dotspacemacs-configuration-layers
    '((auto-completion :variables
                       auto-completion-return-key-behavior nil
@@ -19,7 +19,6 @@
      markdown
      ocaml
      org
-     perl6
      pollen
      pony
      racket
@@ -54,7 +53,7 @@
    dotspacemacs-themes '(gruvbox spacemacs-dark spacemacs-light)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font `("PragmataPro Liga"
-                               :size ,(if (eq system-type 'darwin) 16 20)
+                               :size ,(if (eq system-type 'darwin) 18 20)
                                :weight normal
                                :width normal)
    dotspacemacs-leader-key "SPC"
@@ -371,6 +370,9 @@
           ("||" . ?∨)
           ("not" . ?¬))))
 
+(defun dotspacemacs/configure-ps-mode ()
+  (setq powershell-indent 2))
+
 (defun dotspacemacs/user-config ()
   (setq powerline-default-separator nil
         flycheck-check-syntax-automatically '(save mode-enabled)
@@ -384,6 +386,7 @@
   (dotspacemacs/configure-erlang-mode)
   (dotspacemacs/configure-c-mode)
   (dotspacemacs/configure-tuareg-mode)
+  (dotspacemacs/configure-ps-mode)
   (add-hook 'elm-mode-hook #'dotspacemacs/elm-mode-hook)
   (global-prettify-symbols-mode t))
 

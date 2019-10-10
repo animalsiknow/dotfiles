@@ -1,28 +1,39 @@
-function Update-Link([string]$SourcePath, [string]$TargetPath) {
-  $TargetFile = Get-Item $TargetPath -ErrorAction SilentlyContinue
+#!/usr/bin/env pwsh
 
-  if ($null -eq $TargetFile) {
+function Update-Link([string]$SourcePath, [string]$TargetPath) {
+  $targetFile = Get-Item -Force $TargetPath
+
+  if ($null -eq $targetFile) {
     New-Item -ItemType Directory $(Split-Path $TargetPath) -ErrorAction SilentlyContinue | Out-Null
-  } elseif ([bool]($TargetFile.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
-    Remove-Item $TargetPath
-    $TargetFile = $null
+  } elseif ([bool]($targetFile.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+    Remove-Item -Path $TargetPath -Force
+    $targetFile = $null
   }
 
-  if ($null -eq $TargetFile) {
-    Write-Host -ForegroundColor "Green"("{0} -> {1}" -f $TargetPath, $SourcePath)
-    $SourceFullPath = $([IO.Path]::GetFullPath($(Join-Path $PSScriptRoot $SourcePath)))
-    New-Item -ItemType "SymbolicLink" -Path $TargetPath -Value $SourceFullPath | Out-Null
+  if ($null -eq $targetFile) {
+    Write-Host -ForegroundColor "Green" ("{0} -> {1}" -f $TargetPath, $SourcePath)
+    $sourceFullPath = $([IO.Path]::GetFullPath($(Join-Path $PSScriptRoot $SourcePath)))
+    New-Item -ItemType "SymbolicLink" -Path $TargetPath -Value $sourceFullPath | Out-Null
   } else {
     Write-Host -ForegroundColor "Red" ("{0} already exists, skipping." -f $TargetPath)
   }
 }
 
-$ApplicationData = [Environment]::GetFolderPath([Environment+SpecialFolder]::ApplicationData)
+$platform = if ($IsWindows) { "nt" } else { "unix" }
+$applicationData = [Environment]::GetFolderPath([Environment+SpecialFolder]::ApplicationData)
 
-Update-Link -SourcePath "Profile.ps1" -TargetPath $profile.CurrentUserAllHosts
-Update-Link -SourcePath "emacs.d" -TargetPath $(Join-Path $ApplicationData ".emacs.d")
-Update-Link -SourcePath "spacemacs" -TargetPath $(Join-Path $ApplicationData ".spacemacs")
-Update-Link -SourcePath "spacemacs-layers" -TargetPath $(Join-Path $ApplicationData ".spacemacs-layers")
-Update-Link -SourcePath "code.json" -TargetPath $(Join-Path $ApplicationData "Code" "User" "settings.json")
-Update-Link -SourcePath "gitconfig" -TargetPath $(Join-Path $HOME ".gitconfig")
-Update-Link -SourcePath "gitignore" -TargetPath $(Join-Path $HOME ".gitignore")
+$links = [ordered]@{
+  "fish" = @{"unix" = (Join-Path $applicationData "fish")};
+  "emacs.d" = @{"unix" = (Join-Path $HOME ".emacs.d"); "nt" = (Join-Path $applicationData ".emacs.d")};
+  "spacemacs.d" = @{"unix" = (Join-Path $HOME ".spacemacs.d"); "nt" = (Join-Path $applicationData ".spacemacs.d")};
+  "gitconfig" = @{"all" = (Join-Path $HOME ".gitconfig")};
+  "gitignore" = @{"all" = (Join-Path $HOME ".gitignore")};
+}
+
+foreach ($pair in $links.GetEnumerator()) {
+  $targetPath = ($pair.Value[@($platform, "all")] | Select -First 1)
+  Update-Link -SourcePath $pair.Key -TargetPath $targetPath
+}
+
+# Update-Link -SourcePath "Profile.ps1" -TargetPath $profile.CurrentUserAllHosts
+# update-link -sourcepath "code.json" -targetpath $(join-path $applicationdata "code" "user" "settings.json")
