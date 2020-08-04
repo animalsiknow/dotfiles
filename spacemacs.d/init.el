@@ -200,10 +200,10 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("PragmataPro Liga"
-                               :size 22.0
-                               :weight normal
-                               :width normal)
+   dotspacemacs-default-font
+   (if (eq system-type 'windows-nt)
+       '("Cascadia Mono SemiLight" :size 16.0 :weight normal :width normal)
+     '("PragmataPro Liga" :size 22.0 :weight normal :width normal))
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
