@@ -1,7 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
-(require 'cl-lib)
-
 (defun dotspacemacs/layers ()
   (setq-default
    dotspacemacs-distribution 'spacemacs-base
@@ -57,13 +55,21 @@
             smartparens
             which-key)
      git
+     (haskell :variables haskell-completion-backend 'lsp)
      (org :packages
-          (evil-org :location local)
+          evil-org
           evil-surround
-          (ob :location built-in)
-          (org :location built-in)
-          (org-agenda :location built-in)
+          ob
+          org
+          org-agenda
           persp-mode)
+     (ocaml :packages
+            company
+            dune
+            merlin
+            smartparens
+            tuareg
+            utop)
      (racket :packages
              company
              company-quickhelp
@@ -73,7 +79,8 @@
              company
              evil-cleverparens
              geiser
-             parinfer))))
+             parinfer)
+     typer)))
 
 (defun dotspacemacs/init ()
   "Initialization:
@@ -202,7 +209,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font
    (if (eq system-type 'windows-nt)
-       '("Cascadia Mono SemiLight" :size 16.0 :weight normal :width normal)
+       '("PragmataPro Liga" :size 16.0 :weight normal :width normal)
      '("PragmataPro Liga" :size 22.0 :weight normal :width normal))
 
    ;; The leader key (default "SPC")
@@ -433,31 +440,64 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (defun dotspacemacs/user-env ()
-  (spacemacs/load-spacemacs-env))
+  (if (eq system-type 'windows-nt)
+      (progn
+        (setenv "OPAMROOT" "C:/Users/Simon/.opam")
+        (mapc (lambda (path)
+                (add-to-list 'exec-path path)
+                (setenv "PATH" (concat path ";" (getenv "PATH"))))
+              '("C:/Users/Simon/scoop/apps/haskell/current/lib/extralibs/bin"
+                "C:/Users/Simon/scoop/apps/cygwin/current/root/usr/local/bin"
+                "C:/Users/Simon/scoop/shims"
+                "C:/Users/Simon/AppData/Roaming/cabal/bin")))))
 
 (defun dotspacemacs/user-init ()
   (setq geiser-active-implementations '(gambit)))
 
-(defun dotspacemacs/user-load ()
-  "Library to load while dumping.
-This function is called only while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included in the
-dump.")
+(defun dotspacemacs/user-load ())
 
 (defun dotspacemacs/user-config ()
   (setq font-latex-fontify-sectioning 'color)
   (setq parinfer-auto-switch-indent-mode nil)
   (add-to-list 'auto-mode-alist '("\\.sld\\'" . scheme-mode))
+
+  (setq tuareg-indent-align-with-first-arg t)
+  (spacemacs/declare-prefix-for-mode 'tuareg-mode "e" "errors")
+  (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ee" #'merlin-error-check)
+  (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ej" #'merlin-error-next)
+  (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ek" #'merlin-error-prev)
+
+  (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper"
+        haskell-process-type 'cabal-new-repl)
+
+  (setq font-latex-fontify-script nil
+        font-latex-fontify-sectioning 'color)
+
+  ;; ×
+  (add-to-list 'evil-digraphs-table-user '((?x ?x) . #x00d7))
+  ;; Π
   (add-to-list 'evil-digraphs-table-user '((?* ?P) . #x03a0))
+  ;; ₀
   (add-to-list 'evil-digraphs-table-user '((?_ ?0) . #x2080))
   (add-to-list 'evil-digraphs-table-user '((?_ ?1) . #x2081))
   (add-to-list 'evil-digraphs-table-user '((?_ ?2) . #x2082))
   (add-to-list 'evil-digraphs-table-user '((?_ ?3) . #x2083))
   (add-to-list 'evil-digraphs-table-user '((?_ ?4) . #x2084))
+  ;; ℓ
   (add-to-list 'evil-digraphs-table-user '((?l ?l) . #x2113))
+  ;; ↦
   (add-to-list 'evil-digraphs-table-user '((?| ?>) . #x21a6))
+  ;; ↯
+  (add-to-list 'evil-digraphs-table-user '((?z ?z) . #x21af))
+  ;; ∀
   (add-to-list 'evil-digraphs-table-user '((?a ?a) . #x2200))
+  ;; ∃
   (add-to-list 'evil-digraphs-table-user '((?e ?e) . #x2203))
+  ;; ∗
+  (add-to-list 'evil-digraphs-table-user '((?* ?*) . #x2217))
+  ;; ≡
+  (add-to-list 'evil-digraphs-table-user '((?= ?=) . #x2261))
+  ;; ⋅
   (add-to-list 'evil-digraphs-table-user '((?. ?.) . #x22c5)))
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -470,8 +510,6 @@ This function is called at the very end of Spacemacs initialization."
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   '(font-latex-fontify-script nil)
-   '(font-latex-fontify-sectioning (quote color))
    '(safe-local-variable-values
      (quote
       ((TeX-command-extra-options . "--shell-escape")
@@ -483,5 +521,4 @@ This function is called at the very end of Spacemacs initialization."
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    '(fixed-pitch ((t nil)))
-   '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold)))))
-  )
+   '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold))))))
