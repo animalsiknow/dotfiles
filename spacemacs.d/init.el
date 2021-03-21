@@ -16,16 +16,21 @@
      (spacemacs-editing :packages
                         hexl
                         smartparens
-                        spacemacs-whitespace-cleanup)
+                        spacemacs-whitespace-cleanup
+                        undo-tree)
      (spacemacs-editing-visual :packages
                                rainbow-delimiters)
      (spacemacs-evil :packages
+                     evil-collection
                      evil-cleverparens
                      evil-escape
+                     evil-iedit-state
+                     evil-lisp-state
                      evil-nerd-commenter
                      evil-surround
                      evil-textobj-line
                      evil-unimpaired
+                     evil-visualstar
                      vi-tilde-fringe)
      (spacemacs-navigation :packages
                            restart-emacs)
@@ -49,13 +54,29 @@
      (latex :packages
             auctex
             auctex-latexmk
+            company
+            company-reftex
             evil-matchit
+            flycheck
+            lsp-latex
             reftex
             magic-latex-buffer
             smartparens
             which-key)
      git
      (haskell :variables haskell-completion-backend 'lsp)
+     (html :packages
+           company
+           company-web
+           css-mode
+           emmet-mode
+           evil-matchit
+           flycheck
+           smartparens
+           web-mode)
+     (mercury :packages
+              metal-mercury-mode
+              smartparens)
      (org :packages
           evil-org
           evil-surround
@@ -70,6 +91,8 @@
             smartparens
             tuareg
             utop)
+     pony
+     prolog
      (racket :packages
              company
              company-quickhelp
@@ -80,7 +103,8 @@
              evil-cleverparens
              geiser
              parinfer)
-     typer)))
+     typer
+     windows-scripts)))
 
 (defun dotspacemacs/init ()
   "Initialization:
@@ -209,7 +233,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font
    (if (eq system-type 'windows-nt)
-       '("PragmataPro Liga" :size 16.0 :weight normal :width normal)
+       '("PragmataPro Liga" :size 18.0 :weight normal :width normal)
      '("PragmataPro Liga" :size 22.0 :weight normal :width normal))
 
    ;; The leader key (default "SPC")
@@ -442,6 +466,7 @@ It should only modify the values of Spacemacs settings."
 (defun dotspacemacs/user-env ()
   (if (eq system-type 'windows-nt)
       (progn
+        (setenv "HOME" "C:/Users/Simon")
         (setenv "OPAMROOT" "C:/Users/Simon/.opam")
         (mapc (lambda (path)
                 (add-to-list 'exec-path path)
@@ -456,22 +481,35 @@ It should only modify the values of Spacemacs settings."
 
 (defun dotspacemacs/user-load ())
 
-(defun dotspacemacs/user-config ()
-  (setq font-latex-fontify-sectioning 'color)
-  (setq parinfer-auto-switch-indent-mode nil)
-  (add-to-list 'auto-mode-alist '("\\.sld\\'" . scheme-mode))
+(defun simon/configure-ocaml ()
+  (setq prettify-symbols-alist '(("|" . ?│)))
+  (setq prettify-symbols-alist '(("*" . ?×)))
+  (prettify-symbols-mode 1)
 
-  (setq tuareg-indent-align-with-first-arg t)
   (spacemacs/declare-prefix-for-mode 'tuareg-mode "e" "errors")
   (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ee" #'merlin-error-check)
   (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ej" #'merlin-error-next)
-  (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ek" #'merlin-error-prev)
+  (spacemacs/set-leader-keys-for-major-mode 'tuareg-mode "ek" #'merlin-error-prev))
+
+(defun dotspacemacs/user-config ()
+  (setq font-latex-fontify-sectioning 'color)
+  (setq parinfer-auto-switch-indent-mode nil)
+
+  (add-to-list 'auto-mode-alist '("\\.sld\\'" . scheme-mode))
+  (add-to-list 'auto-mode-alist '("\\.typer\\'" . typer-mode))
+  (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+
+  (setq tuareg-indent-align-with-first-arg t)
+  (add-hook 'tuareg-mode-hook #'superword-mode)
+  (add-hook 'tuareg-mode-hook #'simon/configure-ocaml)
 
   (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper"
         haskell-process-type 'cabal-new-repl)
 
   (setq font-latex-fontify-script nil
         font-latex-fontify-sectioning 'color)
+
+  (setq ponylang-banner 2)
 
   ;; ×
   (add-to-list 'evil-digraphs-table-user '((?x ?x) . #x00d7))
@@ -485,6 +523,8 @@ It should only modify the values of Spacemacs settings."
   (add-to-list 'evil-digraphs-table-user '((?_ ?4) . #x2084))
   ;; ℓ
   (add-to-list 'evil-digraphs-table-user '((?l ?l) . #x2113))
+  ;; ℕ
+  (add-to-list 'evil-digraphs-table-user '((?N ?N) . #x2115))
   ;; ↦
   (add-to-list 'evil-digraphs-table-user '((?| ?>) . #x21a6))
   ;; ↯
@@ -505,20 +545,21 @@ It should only modify the values of Spacemacs settings."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(safe-local-variable-values
-     (quote
-      ((TeX-command-extra-options . "--shell-escape")
-       (TeX-command-extra-options . "--enable-8bit-chars --shell-escape")
-       (TeX-command-extra-options . "-shell-escape")))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(fixed-pitch ((t nil)))
-   '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold))))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   '((TeX-command-extra-options . "--shell-escape")
+     (TeX-command-extra-options . "--enable-8bit-chars --shell-escape")
+     (TeX-command-extra-options . "-shell-escape"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fixed-pitch ((t nil)))
+ '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold))))
+ '(font-lock-function-name-face ((t (:inherit nil :foreground "#bc6ec5")))))
+)

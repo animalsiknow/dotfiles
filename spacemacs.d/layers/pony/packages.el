@@ -18,9 +18,5 @@
     :defer t
     :config
     (progn
-      (add-hook 'ponylang-mode-hook
-                (lambda ()
-                  (set-variable 'indent-tabs-mode nil)
-                  (set-variable 'tab-width 2)))
       (spacemacs/set-leader-keys-for-major-mode 'ponylang-mode
         "c" 'spacemacs/pony-compile))))
