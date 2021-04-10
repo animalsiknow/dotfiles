@@ -13,4 +13,4 @@
   '((typer-mode :location local)))
 
 (defun typer/init-typer-mode ()
-  (use-package typer-mode :mode "\\.type\\'"))
+  (use-package typer-mode :mode "\\.typer\\'"))
