@@ -464,17 +464,25 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (defun dotspacemacs/user-env ()
-  (if (eq system-type 'windows-nt)
-      (progn
-        (setenv "HOME" "C:/Users/Simon")
-        (setenv "OPAMROOT" "C:/Users/Simon/.opam")
-        (mapc (lambda (path)
-                (add-to-list 'exec-path path)
-                (setenv "PATH" (concat path ";" (getenv "PATH"))))
-              '("C:/Users/Simon/scoop/apps/haskell/current/lib/extralibs/bin"
-                "C:/Users/Simon/scoop/apps/cygwin/current/root/usr/local/bin"
-                "C:/Users/Simon/scoop/shims"
-                "C:/Users/Simon/AppData/Roaming/cabal/bin")))))
+  (pcase system-type
+    ('windows-nt
+     (setenv "HOME" "C:/Users/Simon")
+     (setenv "OPAMROOT" "C:/Users/Simon/.opam")
+     (mapc (lambda (path)
+             (add-to-list 'exec-path path)
+             (setenv "PATH" (concat path ";" (getenv "PATH"))))
+           '("C:/Users/Simon/scoop/apps/haskell/current/lib/extralibs/bin"
+             "C:/Users/Simon/scoop/apps/cygwin/current/root/usr/local/bin"
+             "C:/Users/Simon/scoop/shims"
+             "C:/Users/Simon/AppData/Roaming/cabal/bin")))
+    ('darwin
+     (cl-flet ((add-to-path (lambda (path)
+                              (add-to-list 'exec-path path)
+                              (setenv "PATH" (concat path ":" (getenv "PATH"))))))
+       (add-to-path "/usr/local/bin")
+       (add-to-path (string-trim-right (shell-command-to-string "opam var bin"))))
+     (setq mac-command-modifier 'meta)
+     (setq mac-option-modifier 'none))))
 
 (defun dotspacemacs/user-init ()
   (setq geiser-active-implementations '(gambit)))
@@ -545,21 +553,21 @@ It should only modify the values of Spacemacs settings."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   '((TeX-command-extra-options . "--shell-escape")
-     (TeX-command-extra-options . "--enable-8bit-chars --shell-escape")
-     (TeX-command-extra-options . "-shell-escape"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t nil)))
- '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold))))
- '(font-lock-function-name-face ((t (:inherit nil :foreground "#bc6ec5")))))
-)
+ (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(safe-local-variable-values
+    '((TeX-command-extra-options . "--shell-escape")
+      (TeX-command-extra-options . "--enable-8bit-chars --shell-escape")
+      (TeX-command-extra-options . "-shell-escape"))))
+ (custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(fixed-pitch ((t nil)))
+  '(font-latex-slide-title-face ((t (:inherit font-lock-type-face :weight bold))))
+  '(font-lock-function-name-face ((t (:inherit nil :foreground "#bc6ec5"))))))
+
